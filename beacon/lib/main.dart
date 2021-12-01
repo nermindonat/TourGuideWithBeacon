@@ -3,6 +3,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_blue/flutter_blue.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'methods.dart';
 
