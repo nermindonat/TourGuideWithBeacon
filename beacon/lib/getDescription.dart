@@ -1,7 +1,6 @@
 import 'dart:developer' as dev;
-import 'dart:math';
 
-import 'package:beacon/methods.dart';
+import 'package:beacon/summarizetext.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 Future<String> getDescription(index) async {
