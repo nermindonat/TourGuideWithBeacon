@@ -13,10 +13,14 @@ class Info extends StatelessWidget {
           title: Text('Material App Bar'),
         ),
         body: Center(
-          child:FutureBuilder(
-            future: summarizeMethod(),
+          child: FutureBuilder(
+            //future: summarizeMethod(),
             builder: (BuildContext context, AsyncSnapshot snapshot) {
-              return snapshot.hasData?Text(snapshot.data):Center(child: CircularProgressIndicator(),);
+              return snapshot.hasData
+                  ? Text(snapshot.data)
+                  : Center(
+                      child: CircularProgressIndicator(),
+                    );
             },
           ),
         ),
