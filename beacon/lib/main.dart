@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:beacon/descriptionList.dart';
 import 'package:beacon/getDescription.dart';
-import 'package:beacon/scanbeacon.dart';
+import 'package:beacon/scanBeacon.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
