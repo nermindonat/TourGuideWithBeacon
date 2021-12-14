@@ -4,7 +4,8 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_blue/flutter_blue.dart';
 
-scanBeacon(BuildContext context) {
+String scanBeacon(BuildContext context) {
+  String distance = "0";
   FlutterBlue flutterBlueInstance = FlutterBlue.instance;
   var scanDevices = flutterBlueInstance.scan().listen((scanResult) {}).onData((data) {
     log("beacon " + data.toString());
@@ -13,6 +14,9 @@ scanBeacon(BuildContext context) {
     var x = (-80 - data.rssi) / (10 * 2);
     if (x > 0) {
       log("distance: " + x.toString() + " metre");
-    }
+    distance=x.toString();
+    return distance;
+    } else return distance;
   });
+  return distance;
 }

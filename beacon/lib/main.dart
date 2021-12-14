@@ -2,6 +2,8 @@ import 'dart:math';
 
 import 'package:beacon/descriptionList.dart';
 import 'package:beacon/getDescription.dart';
+import 'package:beacon/login.dart';
+import 'package:beacon/scan-beacon.dart';
 import 'package:beacon/scanBeacon.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +32,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: LoginView(),
     );
   }
 }
@@ -131,17 +133,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
             ],
-          ),
-          GestureDetector(
-            onTap: () {
-              scanBeacon(context);
-            },
-            child: Container(
-              width: double.infinity,
-              height: 75,
-              color: Colors.red,
-              child: Center(child: Text("BEACON TARAMA")),
-            ),
           ),
         ],
       ),
