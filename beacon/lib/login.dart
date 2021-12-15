@@ -13,7 +13,7 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
-  TextEditingController username = TextEditingController();
+  TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
   bool showPassword = true;
   @override
@@ -34,7 +34,7 @@ class _LoginViewState extends State<LoginView> {
                 SizedBox(height: deviceHeight(context) * 0.05),
                 Text("Giriş Ekranı",),
                 SizedBox(height: deviceHeight(context) * 0.05),
-                formFieldArea(context, false, "Kullanıcı Adı", username, false),
+                formFieldArea(context, false, "Email", email, false),
                 SizedBox(height: deviceHeight(context) * 0.02),
                 formFieldArea(context, true, "Parola", password, true),
                 SizedBox(height: deviceHeight(context) * 0.02),
@@ -59,7 +59,7 @@ class _LoginViewState extends State<LoginView> {
                 fixedSize: Size.fromHeight(50)),
             onPressed: () async{
               if (
-              await login(context,username.text,password.text)) {
+              await login(context,email.text,password.text)) {
                   Navigator.push(
     context,
     MaterialPageRoute(builder: (context) => ScanBeacon()),
