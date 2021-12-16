@@ -1,10 +1,11 @@
 import 'dart:math';
 
-import 'package:beacon/descriptionList.dart';
-import 'package:beacon/getDescription.dart';
+import 'package:beacon/description-list.dart';
+import 'package:beacon/get-description.dart';
 import 'package:beacon/login.dart';
+import 'package:beacon/register.dart';
 import 'package:beacon/scan-beacon.dart';
-import 'package:beacon/scanBeacon.dart';
+import 'package:beacon/select-city.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -28,6 +29,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner:false,
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -56,8 +58,10 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
-      ),
+        centerTitle: true,
+        title: Text(widget.title,
+          style: TextStyle(fontSize: 20.0, color: Colors.white))),
+      
       body: Stack(
         alignment: Alignment.bottomCenter,
         children: [
@@ -90,6 +94,9 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: !loading
                           ? Text(
                               'Metin Özeti için Tıklayın',
+                              style: TextStyle(
+                                fontSize: 16
+                              ),
                             )
                           : Center(
                               child: CircularProgressIndicator(

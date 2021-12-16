@@ -1,7 +1,8 @@
 import 'dart:developer';
 
-import 'package:beacon/getUser.dart';
+import 'package:beacon/get-user.dart';
 import 'package:beacon/mediaquery.dart';
+import 'package:beacon/register.dart';
 import 'package:beacon/scan-beacon.dart';
 import 'package:flutter/material.dart';
 
@@ -40,6 +41,12 @@ class _LoginViewState extends State<LoginView> {
                 SizedBox(height: deviceHeight(context) * 0.02),
                 loginButton(context),
                 SizedBox(height: deviceHeight(context) * 0.02),
+                TextButton(onPressed: (){
+                  Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => RegisterView()),
+                );
+                }, child: Text("KAYIT OL"))
               ],
             ),
           ),
@@ -60,10 +67,8 @@ class _LoginViewState extends State<LoginView> {
             onPressed: () async{
               if (
               await login(context,email.text,password.text)) {
-                  Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => ScanBeacon()),
-  );
+                   Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
+    ScanBeacon()), (Route<dynamic> route) => false);
                 
               }
             },
