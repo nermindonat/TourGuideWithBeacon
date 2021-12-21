@@ -4,6 +4,7 @@ import 'package:beacon/get-user.dart';
 import 'package:beacon/mediaquery.dart';
 import 'package:beacon/register.dart';
 import 'package:beacon/scan-beacon.dart';
+import 'package:beacon/select-city.dart';
 import 'package:flutter/material.dart';
 
 class LoginView extends StatefulWidget {
@@ -68,7 +69,7 @@ class _LoginViewState extends State<LoginView> {
               if (
               await login(context,email.text,password.text)) {
                    Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
-    ScanBeacon()), (Route<dynamic> route) => false);
+    SelectCity()), (Route<dynamic> route) => false);
                 
               }
             },

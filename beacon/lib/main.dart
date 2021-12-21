@@ -1,18 +1,17 @@
+import 'dart:developer' as dev;
 import 'dart:math';
 
 import 'package:beacon/description-list.dart';
 import 'package:beacon/get-description.dart';
 import 'package:beacon/login.dart';
-import 'package:beacon/register.dart';
-import 'package:beacon/scan-beacon.dart';
-import 'package:beacon/select-city.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MyApp());
+  runApp(MaterialApp(home: MyHomePage(),));
 }
 
 class MyApp extends StatefulWidget {
@@ -25,7 +24,7 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
   }
-
+  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -40,9 +39,7 @@ class _MyAppState extends State<MyApp> {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
+  MyHomePage({Key key}) : super(key: key);
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -54,12 +51,33 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   String summarize = "";
   int randomInt = 0;
+  bool isSpeechActive = false;
+  FlutterTts flutterTts = FlutterTts();
   bool loading = false;
+  textToSpeech(String text)async{
+    if (isSpeechActive) {
+      
+    flutterTts.stop();
+    
+    setState(() {
+      isSpeechActive = !isSpeechActive;
+    });
+    } else {
+      
+    await flutterTts.setLanguage("tr-TR");
+    await flutterTts.setPitch(1);
+    await flutterTts.speak(text);
+    
+    setState(() {
+      isSpeechActive = !isSpeechActive;
+    });
+    }
+  }
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text(widget.title,
+        title: Text("Özetleme",
           style: TextStyle(fontSize: 20.0, color: Colors.white))),
       
       body: Stack(
@@ -80,7 +98,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       setState(() {
                         randomInt = random;
                       });
-                      summarize = await getDescription(random);
+                      summarize = await getDescription(context,random);
                       setState(() {
                         loading = false;
                       });
@@ -117,9 +135,16 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: ListView(
                   children: [
                     Container(
-                        child: Text(
-                      descriptionList[randomInt],
-                    )),
+                        child: GestureDetector(
+                          onTap: (){
+                            
+                      textToSpeech(
+                                              descriptionList[randomInt]);
+                          },
+                          child: Text(
+                                              descriptionList[randomInt],
+                                            ),
+                        )),
                   ],
                 ),
               ),
@@ -133,9 +158,16 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: ListView(
                   children: [
                     Container(
-                        child: Text(
-                      summarize,
-                    ))
+                        child: GestureDetector(
+                          onTap: (){
+                            
+                      textToSpeech(
+                                              summarize);
+                          },
+                          child: Text(
+                                              summarize,
+                                            ),
+                        ))
                   ],
                 ),
               ),

@@ -77,7 +77,7 @@ class _ScanBeaconState extends State<ScanBeacon> {
                     });
                         Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => MyHomePage(title: "ÖZETLEME",)),
+                  MaterialPageRoute(builder: (context) => MyHomePage()),
                 );
                     }
                   },

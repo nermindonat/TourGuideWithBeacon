@@ -29,6 +29,7 @@ dependencies:
   cupertino_icons: ^1.0.4
   cloud_firestore: ^3.1.0
   flutter_blue: ^0.8.0
+  flutter_tts: ^3.2.4
   http: ^0.13.0
   
 
