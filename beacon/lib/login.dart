@@ -44,9 +44,9 @@ class _LoginViewState extends State<LoginView> {
                 SizedBox(height: deviceHeight(context) * 0.02),
                 TextButton(onPressed: (){
                   Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => RegisterView()),
-                );
+                    context,  
+                    MaterialPageRoute(builder: (context) => RegisterView()),
+                    );            
                 }, child: Text("KAYIT OL"))
               ],
             ),
